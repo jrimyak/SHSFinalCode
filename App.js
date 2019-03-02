@@ -54,6 +54,7 @@ deleteTasks = i => {
   );
 }
 
+
 componentDidMount() {
     Keyboard.addListener(
       isAndroid ? "keyboardDidShow" : "keyboardWillShow",
@@ -68,39 +69,9 @@ componentDidMount() {
     Tasks.all(tasks => this.setState({ tasks: tasks || [] }));
   }
 
-render() {
-  return (
-    <View
-          style={[styles.container, { paddingBottom: this.state.viewPadding }]}
-        >
-    <FlatList
-      style={styles.list}
-      data={this.state.tasks}
-      renderItem={({ item, index }) =>
-      <View>
-      <View style={styles.listItemCont}>
-      <Text style={styles.listItem}>
-      {item.text}
-      </Text>
-      <Button title="X" onPress={() => this.deleteTasks(index)} />
-      </View>
-      <View style={styles.hr} />
-      </View>
-      }
-      />
-      <TextInput
-      style={styles.textInput}
-      onChangeText={this.changeTextHandler}
-      onSubmitEditing={this.addTask}
-      value={this.state.text}
-      placeholder="Add Tasks"
-      returnKeyType="done"
-      returnKeyLabel="done"
-      />
-      </View>
-    );
-}
-}
+
+
+
   let Tasks = {
     convertToArrayOfObject(tasks, callback) {
       return callback(
@@ -120,40 +91,7 @@ render() {
     }
   };
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: "#F5FCFF",
-      padding: viewPadding,
-      paddingTop: 20
-    },
-    list: {
-      width: "100%"
-    },
-    listItem: {
-      paddingTop: 2,
-      paddingBottom: 2,
-      fontSize: 18
-    },
-    hr: {
-      height: 1,
-      backgroundColor: "gray"
-    },
-    listItemCont: {
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-between"
-    },
-    textInput: {
-      height: 40,
-      paddingRight: 10,
-      paddingLeft: 10,
-      borderColor: "gray",
-      borderWidth: isAndroid ? 0 : 1,
-      width: "100%"
-    }
-  });
+
+
 
 AppRegistry.registerComponent("TodoList", () => TodoList);
